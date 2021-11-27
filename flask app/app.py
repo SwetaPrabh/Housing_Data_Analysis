@@ -10,9 +10,25 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/')
+@app.route('/', methods = ['POST'])
 def index():
     return render_template('index.html')
+
+def SalePrice_Range(to_predict_list):
+    ols = pickle.load(open('models/Linear.sav'))
+    br = pickle.load(open('models/BayesianRidge.sav'))
+    rf = pickle.load(open('models/RandomForest.sav'))
+    gb = pickle.load(open('models/GBooster.sav'))
+    pred_list = [ols.predict(to_predict), 
+                 br.predict(to_predict), 
+                 rf.predict(to_predict),
+                 gb.predict(to_predict)]
+    low = min(pred_list)
+    low_fmt = '${:,.2f}'.format(low[0])
+    high = max(pred_list)
+    high_fmt = '${:,.2f}'.format(high[0])
+    return str(low_fmt,'-',high_fmt) 
+
 
 def ValuePredictor(to_predict_list):
     to_predict = np.array(to_predict_list).reshape(1,4)
@@ -24,11 +40,10 @@ def ValuePredictor(to_predict_list):
 def result():
     if request.method == 'POST':
         to_predict_list = request.form.to_dict()
-        to_predict_list=list(to_predict_list.values())
+        to_predict_list = list(to_predict_list.values())
         to_predict_list = list(map(float, to_predict_list))
-        to_predict_list = list(map(float, to_predict_list))
-        result = ValuePredictor(to_predict_list)
-        prediction = str(result)
+        to_predict_list = np.array(to_predict_list).reshape(1,105)
+        prediction = SalePrice_Range(to_predict_list)
         return render_template('predict.html', prediction=prediction)
 
 @app.route('/models')
