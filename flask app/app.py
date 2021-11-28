@@ -1,19 +1,16 @@
 import os
 import pandas as pd
 import numpy as np
-import pickle
 from flask import Flask, render_template, request, url_for
+import pickle
+from sklearn.linear_model import LinearRegression, BayesianRidge
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+
+
 
 app = Flask(__name__)
 
-@app.route('/home')
-def home():
-    return render_template('home.html')
-
-@app.route('/', methods = ['POST'])
-def index():
-    return render_template('index.html')
-
+# Predictor Tool
 def SalePrice_Range(to_predict_list):
     ols = pickle.load(open('models/Linear.sav'))
     br = pickle.load(open('models/BayesianRidge.sav'))
@@ -29,14 +26,12 @@ def SalePrice_Range(to_predict_list):
     high_fmt = '${:,.2f}'.format(high[0])
     return str(low_fmt,'-',high_fmt) 
 
+# def ValuePredictor(to_predict_list):
+#     to_predict = np.array(to_predict_list).reshape(1,4)
+#     loaded_model = pickle.load(open('../fakeLinear.sav'))
+#     result = loaded_model.predict(to_predict)
+#     return result[0]
 
-def ValuePredictor(to_predict_list):
-    to_predict = np.array(to_predict_list).reshape(1,4)
-    loaded_model = pickle.load(open('../fakeLinear.sav'))
-    result = loaded_model.predict(to_predict)
-    return result[0]
-
-@app.route('/predict', methods = ['POST'])
 def result():
     if request.method == 'POST':
         to_predict_list = request.form.to_dict()
@@ -44,7 +39,21 @@ def result():
         to_predict_list = list(map(float, to_predict_list))
         to_predict_list = np.array(to_predict_list).reshape(1,105)
         prediction = SalePrice_Range(to_predict_list)
-        return render_template('predict.html', prediction=prediction)
+        return render_template('index.html', prediction=prediction)
+
+overallqual_list =
+overallcond_list =
+
+
+# Pages / Template Rendering
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+@app.route('/', methods = ['POST'])
+def index():
+    prediction = SalePrice_Range(to_predict_list) 
+    return render_template('index.html', prediction=prediction)
 
 @app.route('/models')
 def models():
