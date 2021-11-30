@@ -3,9 +3,8 @@ import pandas as pd
 import numpy as np
 from flask import Flask, render_template, request, url_for
 import pickle
-from sklearn.linear_model import LinearRegression, BayesianRidge
+from sklearn.linear_model import LinearRegression, BayesianRidge, Lasso
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-
 
 
 app = Flask(__name__)
@@ -24,7 +23,7 @@ def SalePrice_Range(to_predict_list):
     low_fmt = '${:,.2f}'.format(low[0])
     high = max(pred_list)
     high_fmt = '${:,.2f}'.format(high[0])
-    return str(low_fmt,'-',high_fmt) 
+    return str(low_fmt)+' - '+str(high_fmt)
 
 # def ValuePredictor(to_predict_list):
 #     to_predict = np.array(to_predict_list).reshape(1,4)
@@ -41,8 +40,6 @@ def result():
         prediction = SalePrice_Range(to_predict_list)
         return render_template('index.html', prediction=prediction)
 
-overallqual_list =
-overallcond_list =
 
 
 # Pages / Template Rendering
@@ -50,7 +47,7 @@ overallcond_list =
 def home():
     return render_template('home.html')
 
-@app.route('/', methods = ['POST'])
+@app.route('/', methods = ['GET','POST'])
 def index():
     prediction = SalePrice_Range(to_predict_list) 
     return render_template('index.html', prediction=prediction)

@@ -6,18 +6,16 @@
 		<h3> House Predictions - Machine Learning Project</h3>
 
 	<div>
-		<form method='POST' enctype="text/plain">
-			<label for='overallqu'>Overall Quality</label>
-			<input type='number' step='1' id='overallqu' name='overallqu'>
-			<br></br>
-			<label for='grlivarea'>Living Area</label>
-			<input type='number' step='100' id='grlivarea' name='grlivarea'>
+		<form id='prediction' method='POST'>
+			Living Area (square ft) <input type='number' name='GrLifArea' min='300' max='4000'><br/>
+			Overall Quality of Materials <input type='number' name='GrLifArea' min='300' max='4000'><br/>
+			
 			<br></br>
 			<input type='submit' value='Submit'>
 		</form>
 		<br></br>
-		<h1>Predicted Sale Price Range: {{prediction}}</h1></body>
-
+		<h1>Predicted Sale Price Range: {{prediction}}</h1>
+	</body>
 	</html>
 
 {% endblock %}
