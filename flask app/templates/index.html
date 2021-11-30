@@ -13,8 +13,11 @@
             Year Built: <input type=number name='YearBuilt' min=1850 max=2021><br/>
             Year Remodeled (if not applicable, put year built): <input type=number name='YearRemodAdd' min=1940 max=2021><br/>
             Mason Veneer Area (ft sq, 0 for n/a): <input type=number name='MasVnrArea' min=0 max=2000><br/>
-            Total Basement (ft sq, 0 for n/a): <input type=number name='TotalBsmtSF' min=0 max=4000><br/>
-            First Floor (ft sq): <input type=number name='1stFlrSF' min=1000 max=300000><br/>
+            Basement Area (ft sq, 0 for n/a): <input type=number name='BsmtFinSF1' min=0 max=5000><br/>
+            Basement Area 2 (if multiple areas, 0 for n/a): <input type=number name='BsmtFinSF2' min=0 max=5000><br/>
+			Basement Unfinished Area (0 for n/a): <input type=number name='BsmtUnfSF' min=0 max=3000><br/>
+			Total Basement (ft sq, 0 for n/a): <input type=number name='TotalBsmtSF' min=0 max=4000><br/>
+            First Floor (ft sq): <input type=number name='1stFlrSF' min=0 max=5000><br/>
             Second Floor (ft sq, 0 for n/a): <input type=number name='2ndFlrSF' min=0 max=2000><br/>
             Low Quality Finish (ft sq): <input type=number name='LowQualFinSF' min=0 max=2000><br/>
             Bedrooms Above Ground: <input type=number name='BedroomAbvGr' min=0 max=10><br/>
@@ -31,17 +34,17 @@
             Pool Area (ft sq, 0 for n/a): <input type=number name='PoolArea' min=0 max=1200><br/>
             Month Sold: <input type=number name='MoSold' min=1 max=12><br/>
             Year Sold: <input type=number name='YrSold' min=1990 max=2024><br/>
-            External Quality (low to high): <input type=number name='Fireplaces' min=1 max=5><br/>
+            External Quality (low to high): <input type=number name='ExterQual_Enc' min=1 max=5><br/>
             Basement Rooms with Windows (0 for n/a): <input type=number name='BsmtExposure_Enc' min=0 max=5><br/>
-            Basement Finish Quality (low to high, 0 for n/a): <input type=number name='BsmtFinType1_Enc' min=0 max=6><br/>
-            Basement Finish Quality 2 (if multiple areas, 0 for n/a): <input type=number name='BsmtFinType2_Enc' min=0 max=6><br/>
-            Heating System Quality (low to high): <input type=number name='HeatingQC_Enc' min=1 max=5><br/>
+            Basement Quality (low to high, 0 for n/a): <input type=number name='BsmtFinType1_Enc' min=0 max=6><br/>
+            Basement Quality 2 (if multiple areas, 0 for n/a): <input type=number name='BsmtFinType2_Enc' min=0 max=6><br/>
+			Heating System Quality (low to high): <input type=number name='HeatingQC_Enc' min=1 max=5><br/>
             Kitchen Quality (low to high): <input type=number name='KitchenQual_Enc' min=1 max=5><br/>
             Functionality (low means damaged): <input type=number name='Functional_Enc' min=0 max=6><br/>
-            Fireplace Quality (low to high, 0 for n/a): <input type=number name='FireplaceQu_Enc' min=1 max=5><br/>
-            Garage Interior Finish Quality (low to high, 0 for n/a): <input type=number name='GarageFinish_Enc' min=0 max=3><br/>
+            Fireplace Quality (low to high, 0 for n/a): <input type=number name='FireplaceQu_Enc' min=0 max=5><br/>
+            Garage Level Finished (1-Unf, 2-Rough, 3-Fin, 0 for n/a): <input type=number name='GarageFinish_Enc' min=0 max=3><br/>
             Garage Overall Quality (low to high, 0 for n/a): <input type=number name='GarageQual_Enc' min=0 max=5><br/>
-            Paved Drive (0-No, 1-Partial, 2-Yes): <input type=number name='PavedDrive_Enc' min=0 max=5><br/>
+            Paved Drive (0-No, 1-Partial, 2-Yes): <input type=number name='PavedDrive_Enc' min=0 max=2><br/>
             Pool Quality (low to high, 0 for n/a): <input type=number name='PoolQC_Enc' min=0 max=5><br/>
             Flatness of Land (1 if significantly sloped, 0 if not): <input type=number name='LandContour_HLS' min=0 max=1><br/>
             <input type=submit value=Submit>

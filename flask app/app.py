@@ -38,17 +38,15 @@ def index():
         int(request.form['FireplaceQu_Enc']), int(request.form['GarageFinish_Enc']),
         int(request.form['GarageQual_Enc']), int(request.form['PavedDrive_Enc']), 
         int(request.form['PoolQC_Enc']), int(request.form['LandContour_HLS'])])
-        features = pd.DataFrame(features)
+        # features = pd.DataFrame(features)
         pred = model.predict(features)
         return render_template('index.html', pred=str(pred))
 
     return render_template('index.html')
 
-
-
 @app.route('/house')
 def house():
-    return render_template('models.html')
+    return render_template('house.html')
 
 @app.route('/team')
 def team():
