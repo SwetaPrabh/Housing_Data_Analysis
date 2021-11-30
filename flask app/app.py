@@ -6,54 +6,48 @@ import pickle
 from sklearn.linear_model import LinearRegression, BayesianRidge, Lasso
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 
+model = pickle.load(open('model/dash_model.pkl','rb'))
+sample = pd.read_csv('sample_input.csv')
 
 app = Flask(__name__)
 
-# Predictor Tool
-def SalePrice_Range(to_predict_list):
-    ols = pickle.load(open('models/Linear.sav'))
-    br = pickle.load(open('models/BayesianRidge.sav'))
-    rf = pickle.load(open('models/RandomForest.sav'))
-    gb = pickle.load(open('models/GBooster.sav'))
-    pred_list = [ols.predict(to_predict), 
-                 br.predict(to_predict), 
-                 rf.predict(to_predict),
-                 gb.predict(to_predict)]
-    low = min(pred_list)
-    low_fmt = '${:,.2f}'.format(low[0])
-    high = max(pred_list)
-    high_fmt = '${:,.2f}'.format(high[0])
-    return str(low_fmt)+' - '+str(high_fmt)
-
-# def ValuePredictor(to_predict_list):
-#     to_predict = np.array(to_predict_list).reshape(1,4)
-#     loaded_model = pickle.load(open('../fakeLinear.sav'))
-#     result = loaded_model.predict(to_predict)
-#     return result[0]
-
-def result():
-    if request.method == 'POST':
-        to_predict_list = request.form.to_dict()
-        to_predict_list = list(to_predict_list.values())
-        to_predict_list = list(map(float, to_predict_list))
-        to_predict_list = np.array(to_predict_list).reshape(1,105)
-        prediction = SalePrice_Range(to_predict_list)
-        return render_template('index.html', prediction=prediction)
-
-
-
-# Pages / Template Rendering
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template('home.html')
 
-@app.route('/', methods = ['GET','POST'])
+@app.route('/saleprice', methods=['GET', 'POST'])
 def index():
-    prediction = SalePrice_Range(to_predict_list) 
-    return render_template('index.html', prediction=prediction)
+    if request.method == 'POST':
+        features = np.array([int(request.form['LotArea']), 
+        int(request.form['OverallQual']), int(request.form['YearBuilt']), 
+        int(request.form['YearRemodAdd']),int(request.form['MasVnrArea']), 
+        int(request.form['BsmtFinSF1']), int(request.form['BsmtFinSF2']), 
+        int(request.form['BsmtUnfSF']),int(request.form['TotalBsmtSF']), 
+        int(request.form['1stFlrSF']), int(request.form['2ndFlrSF']), 
+        int(request.form['LowQualFinSF']), int(request.form['BedroomAbvGr']), 
+        int(request.form['TotRmsAbvGrd']), int(request.form['Fireplaces']), 
+        int(request.form['GarageYrBlt']), int(request.form['GarageCars']), 
+        int(request.form['GarageArea']), int(request.form['WoodDeckSF']), 
+        int(request.form['OpenPorchSF']), int(request.form['EnclosedPorch']), 
+        int(request.form['3SsnPorch']), int(request.form['ScreenPorch']), 
+        int(request.form['PoolArea']), int(request.form['MoSold']),
+        int(request.form['YrSold']), int(request.form['ExterQual_Enc']), 
+        int(request.form['BsmtExposure_Enc']), int(request.form['BsmtFinType1_Enc']),
+        int(request.form['BsmtFinType2_Enc']), int(request.form['HeatingQC_Enc']), 
+        int(request.form['KitchenQual_Enc']), int(request.form['Functional_Enc']), 
+        int(request.form['FireplaceQu_Enc']), int(request.form['GarageFinish_Enc']),
+        int(request.form['GarageQual_Enc']), int(request.form['PavedDrive_Enc']), 
+        int(request.form['PoolQC_Enc']), int(request.form['LandContour_HLS'])])
+        features = pd.DataFrame(features)
+        pred = model.predict(features)
+        return render_template('index.html', pred=str(pred))
 
-@app.route('/models')
-def models():
+    return render_template('index.html')
+
+
+
+@app.route('/house')
+def house():
     return render_template('models.html')
 
 @app.route('/team')

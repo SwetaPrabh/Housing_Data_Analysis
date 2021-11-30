@@ -1,12 +1,16 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h1>Predicting House Sale Prices with Machine Learning</h1>
-<h5>Hillel, Pavlov, Prabha, Zeigerson (2021)</h5>
+<h1>Predicting House Sale Prices with Machine Learning Models</h1>
+<h5>Hillel, Prabha, Zeigerson</h5>
+<h6>NYC Data Science Academy, 2021</h6>
 <br/>
 <h3>Objective</h3>
-<p>overview of dataset and goal, link to kaggle, stakeholders</p>
-<br/>
+<p>Our goal was to engineer a highly accurate supervised learning model to predict sale prices using data from a Kaggle competition for houses sold between 2006 and 2010 in Ames, Iowa. This dashboard was meant to be a result of that model, but due to complications in UI/UX usability, an alternative model trained on reduced features was used as a temporary proxy.</p><br/>
+<p>Intended users and stakeholders include:home builders and flippers; home seekers (for potential budget to house prediction tool); data science students (for potential model education tool)</p><br/><br/>
 <h3>Results</h3>
-<p>different models, use for predictor tool</p>
+<p>To achieve improved accuracy and bias/variance balance in our models we used basic standard scaling, feature normalization and transformation, purposeful feature engineering, and cross-validation grid search for hyperparamter tuning. After experimentation with many regression models (linear, lasso, random forest, support vector, and gradient boosting) our best model was revealed to be a lasso model using ___ hyperparameters and with a training and test score of 96%.</p><br/>
+<p>The model in this dashboard is also a Lasso model with greatly reduced features. Due to limited of dashboard-building capacity and time constraints, we were forced to exclude dummified variables, as well. This left our model with an 88.93% r-squared accuracy.</p>
+<h3>Future Work</h3>
+<p>In addition to adding a house predictor model and an educational tool for examining the differences between ML models. We would additionally seek to advance our ensembling methods, considering other boosters and stacking. Possible solutions to working with a limited number of features in the dash</p><br/>
 {% endblock %}

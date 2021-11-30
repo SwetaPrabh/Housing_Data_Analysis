@@ -3,18 +3,51 @@
 {% block content %}
 	<html>
 	<body>
-		<h3> House Predictions - Machine Learning Project</h3>
+		<h3> Sale Price Predictor</h3>
+		<p>Input house and sale features below to predict a selling price.</p>
 
 	<div>
-		<form id='prediction' method='POST'>
-			Living Area (square ft) <input type='number' name='GrLifArea' min='300' max='4000'><br/>
-			Overall Quality of Materials <input type='number' name='GrLifArea' min='300' max='4000'><br/>
-			
-			<br></br>
-			<input type='submit' value='Submit'>
-		</form>
+		<form method=post enctype="multipart/form-data">
+            Lot Area (ft sq): <input type=number name='LotArea' min=1000 max=300000><br/>
+            Overall Quality (low to high): <input type=number name='OverallQual' min=1 max=10><br/>
+            Year Built: <input type=number name='YearBuilt' min=1850 max=2021><br/>
+            Year Remodeled (if not applicable, put year built): <input type=number name='YearRemodAdd' min=1940 max=2021><br/>
+            Mason Veneer Area (ft sq, 0 for n/a): <input type=number name='MasVnrArea' min=0 max=2000><br/>
+            Total Basement (ft sq, 0 for n/a): <input type=number name='TotalBsmtSF' min=0 max=4000><br/>
+            First Floor (ft sq): <input type=number name='1stFlrSF' min=1000 max=300000><br/>
+            Second Floor (ft sq, 0 for n/a): <input type=number name='2ndFlrSF' min=0 max=2000><br/>
+            Low Quality Finish (ft sq): <input type=number name='LowQualFinSF' min=0 max=2000><br/>
+            Bedrooms Above Ground: <input type=number name='BedroomAbvGr' min=0 max=10><br/>
+            Total Rooms Above Ground: <input type=number name='TotRmsAbvGrd' min=0 max=15><br/>
+            Fireplaces: <input type=number name='Fireplaces' min=0 max=5><br/>
+            Garage Year Built (0 for n/a): <input type=number name='GarageYrBlt' min=0 max=2021><br/>
+            Garage Number of Cars (0 for n/a): <input type=number name='GarageCars' min=0 max=5><br/>
+            Garage Area (ft sq, 0 for n/a): <input type=number name='GarageArea' min=0 max=2000><br/>
+            Wood Deck Area (ft sq, 0 for n/a): <input type=number name='WoodDeckSF' min=0 max=2000><br/>
+            Open Porch Area (ft sq, 0 for n/a): <input type=number name='OpenPorchSF' min=0 max=1000><br/>
+            Enclosed Porch Area (ft sq, 0 for n/a): <input type=number name='EnclosedPorch' min=0 max=1500><br/>
+            3-Season Porch Area (ft sq, 0 for n/a): <input type=number name='3SsnPorch' min=0 max=1000><br/>
+            Screen Porch Area (ft sq, 0 for n/a): <input type=number name='ScreenPorch' min=0 max=1000><br/>
+            Pool Area (ft sq, 0 for n/a): <input type=number name='PoolArea' min=0 max=1200><br/>
+            Month Sold: <input type=number name='MoSold' min=1 max=12><br/>
+            Year Sold: <input type=number name='YrSold' min=1990 max=2024><br/>
+            External Quality (low to high): <input type=number name='Fireplaces' min=1 max=5><br/>
+            Basement Rooms with Windows (0 for n/a): <input type=number name='BsmtExposure_Enc' min=0 max=5><br/>
+            Basement Finish Quality (low to high, 0 for n/a): <input type=number name='BsmtFinType1_Enc' min=0 max=6><br/>
+            Basement Finish Quality 2 (if multiple areas, 0 for n/a): <input type=number name='BsmtFinType2_Enc' min=0 max=6><br/>
+            Heating System Quality (low to high): <input type=number name='HeatingQC_Enc' min=1 max=5><br/>
+            Kitchen Quality (low to high): <input type=number name='KitchenQual_Enc' min=1 max=5><br/>
+            Functionality (low means damaged): <input type=number name='Functional_Enc' min=0 max=6><br/>
+            Fireplace Quality (low to high, 0 for n/a): <input type=number name='FireplaceQu_Enc' min=1 max=5><br/>
+            Garage Interior Finish Quality (low to high, 0 for n/a): <input type=number name='GarageFinish_Enc' min=0 max=3><br/>
+            Garage Overall Quality (low to high, 0 for n/a): <input type=number name='GarageQual_Enc' min=0 max=5><br/>
+            Paved Drive (0-No, 1-Partial, 2-Yes): <input type=number name='PavedDrive_Enc' min=0 max=5><br/>
+            Pool Quality (low to high, 0 for n/a): <input type=number name='PoolQC_Enc' min=0 max=5><br/>
+            Flatness of Land (1 if significantly sloped, 0 if not): <input type=number name='LandContour_HLS' min=0 max=1><br/>
+            <input type=submit value=Submit>
+        </form>
 		<br></br>
-		<h1>Predicted Sale Price Range: {{prediction}}</h1>
+		<h1>Predicted Sale Price Range: {{ pred }}</h1>
 	</body>
 	</html>
 
