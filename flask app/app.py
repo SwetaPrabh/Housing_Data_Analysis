@@ -18,7 +18,7 @@ def home():
 @app.route('/saleprice', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        features = np.array([int(request.form['LotArea']), 
+        features = np.array([[int(request.form['LotArea']), 
         int(request.form['OverallQual']), int(request.form['YearBuilt']), 
         int(request.form['YearRemodAdd']),int(request.form['MasVnrArea']), 
         int(request.form['BsmtFinSF1']), int(request.form['BsmtFinSF2']), 
@@ -37,10 +37,11 @@ def index():
         int(request.form['KitchenQual_Enc']), int(request.form['Functional_Enc']), 
         int(request.form['FireplaceQu_Enc']), int(request.form['GarageFinish_Enc']),
         int(request.form['GarageQual_Enc']), int(request.form['PavedDrive_Enc']), 
-        int(request.form['PoolQC_Enc']), int(request.form['LandContour_HLS'])])
+        int(request.form['PoolQC_Enc']), int(request.form['LandContour_HLS'])]])
         # features = pd.DataFrame(features)
         pred = model.predict(features)
-        return render_template('index.html', pred=str(pred))
+        pred_fmt = '${:,.2f}'.format(pred[0])
+        return render_template('index.html', pred=pred_fmt)
 
     return render_template('index.html')
 

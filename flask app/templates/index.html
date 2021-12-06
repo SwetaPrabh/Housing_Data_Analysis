@@ -8,33 +8,40 @@
 
 	<div>
 		<form method=post enctype="multipart/form-data">
-            Lot Area (ft sq): <input type=number name='LotArea' min=1000 max=300000><br/>
-            Overall Quality (low to high): <input type=number name='OverallQual' min=1 max=10><br/>
+            <h2>General</h2>
+			Lot Area (ft sq): <input type=number name='LotArea' min=1000 max=300000><br/>
+			Overall Quality (low to high): <input type=number name='OverallQual' min=1 max=10><br/>
             Year Built: <input type=number name='YearBuilt' min=1850 max=2021><br/>
             Year Remodeled (if not applicable, put year built): <input type=number name='YearRemodAdd' min=1940 max=2021><br/>
             Mason Veneer Area (ft sq, 0 for n/a): <input type=number name='MasVnrArea' min=0 max=2000><br/>
-            Basement Area (ft sq, 0 for n/a): <input type=number name='BsmtFinSF1' min=0 max=5000><br/>
+            <h2>Basement</h2>
+			Basement Area (ft sq, 0 for n/a): <input type=number name='BsmtFinSF1' min=0 max=5000><br/>
             Basement Area 2 (if multiple areas, 0 for n/a): <input type=number name='BsmtFinSF2' min=0 max=5000><br/>
 			Basement Unfinished Area (0 for n/a): <input type=number name='BsmtUnfSF' min=0 max=3000><br/>
 			Total Basement (ft sq, 0 for n/a): <input type=number name='TotalBsmtSF' min=0 max=4000><br/>
-            First Floor (ft sq): <input type=number name='1stFlrSF' min=0 max=5000><br/>
+            <h2>Upper Floors</h2>
+			First Floor (ft sq): <input type=number name='1stFlrSF' min=0 max=5000><br/>
             Second Floor (ft sq, 0 for n/a): <input type=number name='2ndFlrSF' min=0 max=2000><br/>
             Low Quality Finish (ft sq): <input type=number name='LowQualFinSF' min=0 max=2000><br/>
             Bedrooms Above Ground: <input type=number name='BedroomAbvGr' min=0 max=10><br/>
             Total Rooms Above Ground: <input type=number name='TotRmsAbvGrd' min=0 max=15><br/>
             Fireplaces: <input type=number name='Fireplaces' min=0 max=5><br/>
-            Garage Year Built (0 for n/a): <input type=number name='GarageYrBlt' min=0 max=2021><br/>
+            <h2>Garage</h2>
+			Garage Year Built (0 for n/a): <input type=number name='GarageYrBlt' min=0 max=2021><br/>
             Garage Number of Cars (0 for n/a): <input type=number name='GarageCars' min=0 max=5><br/>
             Garage Area (ft sq, 0 for n/a): <input type=number name='GarageArea' min=0 max=2000><br/>
-            Wood Deck Area (ft sq, 0 for n/a): <input type=number name='WoodDeckSF' min=0 max=2000><br/>
+            <h2>Porch</h2>
+			Wood Deck Area (ft sq, 0 for n/a): <input type=number name='WoodDeckSF' min=0 max=2000><br/>
             Open Porch Area (ft sq, 0 for n/a): <input type=number name='OpenPorchSF' min=0 max=1000><br/>
             Enclosed Porch Area (ft sq, 0 for n/a): <input type=number name='EnclosedPorch' min=0 max=1500><br/>
             3-Season Porch Area (ft sq, 0 for n/a): <input type=number name='3SsnPorch' min=0 max=1000><br/>
             Screen Porch Area (ft sq, 0 for n/a): <input type=number name='ScreenPorch' min=0 max=1000><br/>
             Pool Area (ft sq, 0 for n/a): <input type=number name='PoolArea' min=0 max=1200><br/>
-            Month Sold: <input type=number name='MoSold' min=1 max=12><br/>
+            <h2>Selling Dates</h2>
+			Month Sold: <input type=number name='MoSold' min=1 max=12><br/>
             Year Sold: <input type=number name='YrSold' min=1990 max=2024><br/>
-            External Quality (low to high): <input type=number name='ExterQual_Enc' min=1 max=5><br/>
+            <h2>Quality</h2>
+			External Quality (low to high): <input type=number name='ExterQual_Enc' min=1 max=5><br/>
             Basement Rooms with Windows (0 for n/a): <input type=number name='BsmtExposure_Enc' min=0 max=5><br/>
             Basement Quality (low to high, 0 for n/a): <input type=number name='BsmtFinType1_Enc' min=0 max=6><br/>
             Basement Quality 2 (if multiple areas, 0 for n/a): <input type=number name='BsmtFinType2_Enc' min=0 max=6><br/>
@@ -50,7 +57,7 @@
             <input type=submit value=Submit>
         </form>
 		<br></br>
-		<h1>Predicted Sale Price Range: {{ pred }}</h1>
+		<h1>Predicted Sale Price: {{ pred }}</h1>
 	</body>
 	</html>
 
