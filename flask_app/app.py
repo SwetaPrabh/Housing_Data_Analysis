@@ -13,15 +13,6 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/graph')
-def home():
-    data = []
-
-    labels = 
-    values = 
-
-    return render_template('graph.html', labels=labels, values=values) 
-
 @app.route('/saleprice', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
